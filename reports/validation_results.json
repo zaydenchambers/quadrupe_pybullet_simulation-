@@ -1,0 +1,47 @@
+[
+  {
+    "check": "12 revolute joints",
+    "pass": true,
+    "detail": "12 revolute, 16 fixed, 28 total"
+  },
+  {
+    "check": "per-leg chain base\u2192coax\u2192femur\u2192tibia\u2192foot, axes X/Y/Y",
+    "pass": true,
+    "detail": "ok"
+  },
+  {
+    "check": "all legs have identical femur/tibia lengths (sagittal, FK)",
+    "pass": true,
+    "detail": "femur 107.98 mm, tibia 116.00 mm"
+  },
+  {
+    "check": "left/right mirror symmetry of hips",
+    "pass": true,
+    "detail": "FL [139.3, 38.8, 300.0]  RR [-143.2, -38.8, 300.4]"
+  },
+  {
+    "check": "stands under gravity at the IK height (1-4 s)",
+    "pass": true,
+    "detail": "base_link height 203.7-203.7 mm vs IK 204.0 mm (dropped from +30 mm); max |roll| 0.14 deg, |pitch| 0.31 deg"
+  },
+  {
+    "check": "load carried by all 4 feet and nothing else (time-averaged contact force)",
+    "pass": true,
+    "detail": "weight share FL 23%, FR 22%, RL 27%, RR 28%; sum 21.87 N vs weight 21.87 N; other links 0.000 N"
+  },
+  {
+    "check": "COM projection inside support polygon (every sample, 1-4 s)",
+    "pass": true,
+    "detail": "min margin 88.2 mm; COM xy [-38.2, -0.1] mm; feet at x [116.6, 116.7, -165.7, -165.7] mm; total mass 2.229 kg"
+  },
+  {
+    "check": "recovers from a 0.58 N*s shove at t=4 s",
+    "pass": true,
+    "detail": "peak tilt 0.36 deg; final 1 s max |roll| 0.14, |pitch| 0.31 deg; all feet loaded again: True"
+  },
+  {
+    "check": "visual sanity vs reference photo (silhouette IoU from fitted camera)",
+    "pass": true,
+    "detail": "IoU 0.731 (robot+stand silhouettes; legs posed by hand, so ~0.7-0.8 is a good match); see reports/render_vs_photo.png"
+  }
+]

@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "../../../Desktop/quadruped_project"
+		},
+		{
+			"path": "../reports"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "../source_stl"
+		},
+		{
+			"path": "../meshes"
+		}
+	],
+	"settings": {}
+}

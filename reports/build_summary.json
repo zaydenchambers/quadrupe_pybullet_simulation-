@@ -1,0 +1,187 @@
+{
+  "notes": "mm unless noted; tags: MEASURED / INFERRED / ESTIMATED",
+  "coax.roll_to_pitch_offset_z": {
+    "value": 10.545988003240488,
+    "tag": "MEASURED"
+  },
+  "coax.roll_axis_to_pitch_horn_floor_y": {
+    "value": 24.706309852041095,
+    "tag": "MEASURED"
+  },
+  "servo.shaft_offset_from_body_centre": {
+    "value": 10.49282578217533,
+    "tag": "MEASURED (mean of coax peg & tibia pin)"
+  },
+  "femur.length_hip_to_knee": {
+    "value": 107.97673473641879,
+    "tag": "MEASURED"
+  },
+  "femur.frame_tilt_deg": {
+    "value": 4.303087532801701,
+    "tag": "MEASURED"
+  },
+  "tibia.length_knee_to_foot_centre": {
+    "value": 116.00374833561736,
+    "tag": "MEASURED"
+  },
+  "tibia.frame_tilt_deg": {
+    "value": -1.6998536058748868,
+    "tag": "MEASURED"
+  },
+  "foot.tyre_outer_radius": {
+    "value": 18.500000953674316,
+    "tag": "MEASURED"
+  },
+  "femur_cover.offset_in_femur_print": {
+    "value": [
+      6.575774027213164,
+      -19.402964284338267,
+      -2.9520220644968624
+    ],
+    "tag": "INFERRED (bearing seat on knee axis, skin on femur face)"
+  },
+  "check.knee_pin_engagement_in_cover_bearing_mm": {
+    "value": 1.8021001077515706,
+    "tag": "INFERRED check (5 mm = full)"
+  },
+  "check.cover_screw_vs_femur_ear_holes_mm": {
+    "value": 1.0955907724363771,
+    "tag": "INFERRED check"
+  },
+  "body.front_roll_axis_above_trunk_floor": {
+    "value": 21.15,
+    "tag": "INFERRED (trunk\u2194inner\u2194bearing-plate screw patterns)"
+  },
+  "body.hip_roll_axis_half_spacing": {
+    "value": 38.85,
+    "tag": "MEASURED"
+  },
+  "body.rear_roll_axis_z_rel_front": {
+    "value": 0.40000000000000213,
+    "tag": "INFERRED"
+  },
+  "hip.front_x": {
+    "value": 139.28576172780694,
+    "tag": "INFERRED"
+  },
+  "hip.rear_x": {
+    "value": -143.16999632883366,
+    "tag": "INFERRED"
+  },
+  "hip.y": {
+    "value": 38.85,
+    "tag": "INFERRED"
+  },
+  "hip.front_z": {
+    "value": 0.0,
+    "tag": "INFERRED"
+  },
+  "hip.rear_z": {
+    "value": 0.40000000000000213,
+    "tag": "INFERRED"
+  },
+  "head.front_face_normal_below_horizontal_deg": {
+    "value": 25.547941455311147,
+    "tag": "MEASURED (tab normals / circular screw holes)"
+  },
+  "rear_panel.back_face_normal_below_horizontal_deg": {
+    "value": 4.02976318808262,
+    "tag": "MEASURED (tab normals / circular screw holes)"
+  },
+  "check.TopFront_inner_wall_vs_shoulder_face_mm": {
+    "value": -0.06816836077266686,
+    "tag": "INFERRED check (+ = gap, - = overlap)"
+  },
+  "check.TopRear_inner_wall_vs_shoulder_face_mm": {
+    "value": 0.04798251343760995,
+    "tag": "INFERRED check (+ = gap, - = overlap)"
+  },
+  "check.BottomFront_inner_wall_vs_shoulder_face_mm": {
+    "value": 0.09599453063621155,
+    "tag": "INFERRED check (+ = gap, - = overlap)"
+  },
+  "check.BottomRear_inner_wall_vs_shoulder_face_mm": {
+    "value": 0.0999961853027358,
+    "tag": "INFERRED check (+ = gap, - = overlap)"
+  },
+  "check.front_side_seam_overlap_mm": {
+    "value": -1.9117281206830938,
+    "tag": "INFERRED check"
+  },
+  "check.rear_side_seam_overlap_mm": {
+    "value": -1.5161245355213566,
+    "tag": "INFERRED check"
+  },
+  "check.hatch_hole_spacing_vs_cover_bosses_mm": {
+    "value": 1.0320341332920862,
+    "tag": "INFERRED check"
+  },
+  "mass.base_link_kg": {
+    "value": 0.7125578349368407,
+    "tag": "ESTIMATED"
+  },
+  "body.bounding_box_mm": {
+    "value": [
+      [
+        -198.6,
+        -59.4,
+        -69.8
+      ],
+      [
+        222.0,
+        59.7,
+        30.4
+      ]
+    ],
+    "tag": "MEASURED (assembled)"
+  },
+  "mass.cover_head_kg": {
+    "value": 0.04615738350606438,
+    "tag": "ESTIMATED"
+  },
+  "mass.cover_rear_shell_kg": {
+    "value": 0.035052996554902904,
+    "tag": "ESTIMATED"
+  },
+  "mass.cover_rear_base_kg": {
+    "value": 0.008128717515773591,
+    "tag": "ESTIMATED"
+  },
+  "mass.cover_top_front_kg": {
+    "value": 0.03772145336034351,
+    "tag": "ESTIMATED"
+  },
+  "mass.cover_top_rear_kg": {
+    "value": 0.034797890739390255,
+    "tag": "ESTIMATED"
+  },
+  "mass.cover_bottom_front_kg": {
+    "value": 0.027832392570596467,
+    "tag": "ESTIMATED"
+  },
+  "mass.cover_bottom_rear_kg": {
+    "value": 0.03361644112279067,
+    "tag": "ESTIMATED"
+  },
+  "mass.cover_belly_hatch_kg": {
+    "value": 0.08563154875364233,
+    "tag": "ESTIMATED"
+  },
+  "mass.per_leg_kg": {
+    "value": {
+      "FL": 0.3019786645647999,
+      "FR": 0.30198588482222055,
+      "RL": 0.3019786645647999,
+      "RR": 0.30198588482222055
+    },
+    "tag": "ESTIMATED"
+  },
+  "mass.total_kg": {
+    "value": 2.229425757834386,
+    "tag": "ESTIMATED"
+  },
+  "leg.foot_lateral_offset_from_centreline": {
+    "value": 88.20858951512704,
+    "tag": "INFERRED"
+  }
+}
