@@ -102,3 +102,69 @@ NOT_PLACED = {
     "Sensor_PIRCup": "internal sensor bracket; mass lumped in ELECTRONICS",
     "Sensor_UltraSonicPlate": "internal sensor bracket; mass lumped in ELECTRONICS",
 }
+
+# --------------------------------------------------------------------------- #
+# Reinforcement learning (quadruped_env.py / train.py / evaluate.py).
+# These do not affect the URDF build.
+# --------------------------------------------------------------------------- #
+
+# ---- simulation / control -------------------------------------------------- #
+# 480 Hz instead of 240: with 240 Hz the feet sank up to 20 mm into the floor on hard landings.
+SIM_TIMESTEP = 1 / 480.0      # PyBullet physics step, s
+ACTION_REPEAT = 16            # physics steps per env step -> 30 Hz control
+# Sim-only contact fixes (the URDF is untouched). The 3.6 g foot link against a 2.2 kg body is a
+# bad mass ratio for the contact solver, so the foot is made heavier and its contact stiffer.
+SIM_FOOT_MASS = 0.030         # kg
+SIM_FOOT_CONTACT_STIFFNESS = 3e4   # N/m
+SIM_FOOT_CONTACT_DAMPING = 300.0   # N*s/m
+ACTION_FILTER_ALPHA = 0.4     # low-pass on actions: applied = a*new + (1-a)*previous applied (1 = off)
+ACTION_SCALE = 0.35           # rad; action in [-1, 1] maps to +/- this offset from the stance
+MOTOR_POSITION_GAIN = 0.3     # same servo model as sm3_sim.set_pose
+MOTOR_VELOCITY_GAIN = 1.0
+EPISODE_SECONDS = 20.0        # time limit -> truncation
+
+# ---- reset randomisation ----------------------------------------------------- #
+RESET_JOINT_NOISE = 0.05      # rad, uniform +/- on every joint around the stance
+RESET_ORIENT_NOISE = 0.03     # rad, uniform +/- on initial base roll/pitch/yaw
+RESET_HEIGHT_NOISE = 0.01     # m, uniform +/- on initial drop height
+
+# ---- reward weights (per env step) ------------------------------------------ #
+TARGET_FORWARD_SPEED = 0.30   # m/s; commanded walking speed along the body's forward axis
+FORWARD_SPEED_SIGMA = 0.15    # m/s; width of the speed-tracking reward
+REWARD_FORWARD_VEL = 2.0      # x exp(-(speed error / sigma)^2)
+REWARD_ALIVE = 0.25           # constant bonus for not having fallen (keeps "fall early" unattractive)
+PENALTY_TILT = 0.5            # x (roll^2 + pitch^2), rad^2
+PENALTY_ENERGY = 0.01         # x sum |torque * joint velocity| * dt over the env step, J
+PENALTY_ACTION_RATE = 0.10   # x sum (action - previous action)^2
+PENALTY_JOINT_VEL = 0.002     # x sum joint velocity^2, (rad/s)^2; discourages twitching
+PENALTY_BODY_CONTACT = 1.0    # x number of non-foot links touching the ground (dragging shins/body)
+PENALTY_LATERAL_DRIFT = 0.5   # x |y velocity| (m/s); keeps it walking straight
+# Gait shaping: a trot clock replaces the old air-time bonus, which rewarded hopping (26 % foot contact).
+GAIT_FREQUENCY_HZ = 2.5       # full trot cycles per second; FL+RR and FR+RL alternate
+REWARD_GAIT_MATCH = 0.75      # x fraction of feet whose contact matches the trot clock
+PENALTY_FLIGHT = 1.5          # x fraction of the step with all four feet off the ground
+PENALTY_VERTICAL_VEL = 1.0    # x base vertical speed^2, (m/s)^2
+PENALTY_YAW = 1.0             # x heading error^2, rad^2
+PENALTY_LATERAL_OFFSET = 1.0  # x sideways distance from the start line^2, m^2
+PENALTY_FOOT_SLIP = 0.25      # x sum over feet in contact of (horizontal foot speed)^2, (m/s)^2
+
+# ---- termination --------------------------------------------------------------- #
+MIN_BASE_HEIGHT_FRAC = 0.55   # fall if base height < this fraction of the stance height
+MAX_TILT = 0.6                # rad (~34 deg) of roll or pitch
+
+# ---- PPO / training ------------------------------------------------------------ #
+TRAIN_TOTAL_STEPS = 15_000_000
+TRAIN_N_ENVS = 8              # parallel PyBullet processes
+TRAIN_CHECKPOINT_EVERY = 200_000   # env steps (summed over all envs)
+PPO_KWARGS = dict(
+    n_steps=1024,             # per env -> 8192 samples per update
+    batch_size=2048,
+    n_epochs=10,
+    learning_rate=1.5e-4,
+    target_kl=0.02,           # stop an update's epochs early if the policy moves too far (KL was ~0.06)
+    gamma=0.99,
+    gae_lambda=0.95,
+    clip_range=0.2,
+    ent_coef=0.0,
+    policy_kwargs=dict(net_arch=dict(pi=[256, 256], vf=[256, 256]), log_std_init=-1.0),
+)

@@ -38,10 +38,5 @@
     "check": "recovers from a 0.58 N*s shove at t=4 s",
     "pass": true,
     "detail": "peak tilt 0.36 deg; final 1 s max |roll| 0.14, |pitch| 0.31 deg; all feet loaded again: True"
-  },
-  {
-    "check": "visual sanity vs reference photo (silhouette IoU from fitted camera)",
-    "pass": true,
-    "detail": "IoU 0.731 (robot+stand silhouettes; legs posed by hand, so ~0.7-0.8 is a good match); see reports/render_vs_photo.png"
   }
 ]

@@ -44,6 +44,8 @@ def main():
     dt = 1 / 240.0
     t = 0.0
     while t < args.seconds:
+        if not p.isConnected():  # GUI window was closed
+            break
         if t > 2.0:  # gentle squat: leg extension 175 mm +/- 25 mm
             e = ext + 0.025 * math.sin(2 * math.pi * 0.25 * (t - 2.0))
             a, b = stance_angles(e)
