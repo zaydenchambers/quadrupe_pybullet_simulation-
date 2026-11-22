@@ -7,3 +7,6 @@ shapely>=2.0          # planar sections -> polygons (bore detection)
 rtree>=1.0            # trimesh proximity queries (mirror-pair registration check)
 networkx>=3.0         # trimesh path handling
 fast-simplification   # optional: decimates the 404k-face head panel for visuals
+gymnasium>=1.0        # RL environment API (quadruped_env.py)
+stable-baselines3>=2.3  # PPO (train.py / evaluate.py)
+tensorboard>=2.15     # training curves: tensorboard --logdir runs
